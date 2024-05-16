@@ -1,0 +1,39 @@
+{
+  "name": "online-shopping",
+  "version": "1.0.0",
+  "description": "Online Shopping.",
+  "repository": "https://github.com/hasanciftci26/cap-online-shopping-sample.git",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.12.9",
+    "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
+    "@sap/eslint-plugin-cds": "^3",
+    "eslint": "^9"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "db": "hana",
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "admin": {
+            "password": "admin"
+          }
+        }
+      }
+    },
+    "cov2ap": {
+      "plugin": true
+    }
+  }
+}
