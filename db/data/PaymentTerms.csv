@@ -1,0 +1,11 @@
+ID;description
+NET30;Net 30 days
+NET45;Net 45 days
+NET60;Net 60 days
+DUE_ON_RECEIPT;Due on Receipt
+COD;Cash on Delivery
+PREPAID;Prepaid
+INSTALLMENTS;Installments
+30_DAYS_EOM;30 Days End of Month
+60_DAYS_EOM;60 Days End of Month
+RECURRING;Recurring Payment

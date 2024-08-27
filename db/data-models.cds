@@ -1,19 +1,21 @@
 entity Products {
-    key ID              : UUID                                    @Common.Label: 'Product ID';
-        name            : String(50)                              @Common.Label: 'Product Name';
-        description     : String(255)                             @Common.Label: 'Product Description';
-        brand           : String(50)                              @Common.Label: 'Brand';
-        price           : Decimal(13, 2) not null                 @Common.Label: 'Price';
-        currency        : Currencies:ID not null                  @Common.Label: 'Currency';
-        quantityInStock : Integer                                 @Common.Label: 'Quantity In Stock';
-        categoryID      : Categories:ID not null                  @Common.Label: 'Category ID';
-        supplierID      : Suppliers:ID not null                   @Common.Label: 'Supplier ID';
-        toCategory      : Association to one Categories
-                              on toCategory.ID = $self.categoryID @Common.Label: 'To Category Navigation';
-        toSupplier      : Association to one Suppliers
-                              on toSupplier.ID = $self.ID         @Common.Label: 'To Supplier Navigation';
-        toCurrency      : Association to one Currencies
-                              on toCurrency.ID = $self.currency   @Common.Label: 'To Currency Navigation';
+    key ID               : UUID                                    @Common.Label: 'Product ID';
+        name             : String(50)                              @Common.Label: 'Product Name';
+        description      : String(255)                             @Common.Label: 'Product Description';
+        brand            : String(50)                              @Common.Label: 'Brand';
+        price            : Decimal(13, 2) not null                 @Common.Label: 'Price';
+        currency         : Currencies:ID not null                  @Common.Label: 'Currency';
+        quantityInStock  : Integer                                 @Common.Label: 'Quantity In Stock';
+        categoryID       : Categories:ID not null                  @Common.Label: 'Category ID';
+        supplierID       : Suppliers:ID not null                   @Common.Label: 'Supplier ID';
+        firstReleaseDate : Date;
+        isActive         : Boolean;
+        toCategory       : Association to one Categories
+                               on toCategory.ID = $self.categoryID @Common.Label: 'To Category Navigation';
+        toSupplier       : Association to one Suppliers
+                               on toSupplier.ID = $self.supplierID @Common.Label: 'To Supplier Navigation';
+        toCurrency       : Association to one Currencies
+                               on toCurrency.ID = $self.currency   @Common.Label: 'To Currency Navigation';
 };
 
 entity Categories {
@@ -51,7 +53,7 @@ entity Customers {
 };
 
 entity OrderHeaders {
-    key ID              : Integer                                         @Common.Label: 'Order ID';
+    key ID              : String(10)                                      @Common.Label: 'Order ID';
         customerID      : Customers:ID not null                           @Common.Label: 'Customer ID';
         date            : DateTime                                        @Common.Label: 'Order Date';
 
@@ -67,6 +69,8 @@ entity OrderHeaders {
         paymentMethod   : PaymentMethods:ID                               @Common.Label: 'Payment Method';
         shippingAddress : String(255)                                     @Common.Label: 'Shipping Address';
         billingAddress  : String(255)                                     @Common.Label: 'Billing Address';
+        toItems         : Composition of many OrderItems
+                              on toItems.toHeader = $self                 @Common.Label: 'To Order Items Navigation';
         toCustomer      : Association to one Customers
                               on toCustomer.ID = $self.customerID         @Common.Label: 'To Customer Navigation';
         toPaymentMethod : Association to one PaymentMethods
@@ -90,6 +94,8 @@ entity OrderItems {
             SHIPPED    = 'Shipped';
             DELIVERED  = 'Delivered';
         } not null;
+        toHeader   : Association to one OrderHeaders
+                         on toHeader.ID = $self.ID         @Common.Label: 'To Order Header Navigation';
         toProduct  : Association to one Products
                          on toProduct.ID = $self.productID @Common.Label: 'To Product Navigation';
 };

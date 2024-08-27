@@ -22,7 +22,17 @@
   },
   "cds": {
     "requires": {
-      "db": "hana",
+      "db": {
+        "[development]": {
+          "kind": "sql"
+        },
+        "[hybrid]": {
+          "kind": "hana"
+        },
+        "[production]": {
+          "kind": "hana"
+        }
+      },
       "auth": {
         "kind": "mocked",
         "users": {

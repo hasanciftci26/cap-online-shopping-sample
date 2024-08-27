@@ -1,0 +1,16 @@
+ID;description
+VISA;Credit Card (Visa)
+MASTERCARD;Credit Card (MasterCard)
+AMEX;Credit Card (American Express)
+DEBIT;Debit Card
+PAYPAL;PayPal
+BANKTRANS;Bank Transfer
+DIRECTDEB;Direct Debit
+APPLEPAY;Apple Pay
+GOOGLEPAY;Google Pay
+SAMSUNG;Samsung Pay
+BITCOIN;Bitcoin
+ETHEREUM;Ethereum
+PAYONEER;Payoneer
+ALIPAY;Alipay
+WECHATPAY;WeChat Pay
