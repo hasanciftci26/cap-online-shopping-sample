@@ -8,8 +8,8 @@ entity Products {
         quantityInStock  : Integer                                 @Common.Label: 'Quantity In Stock';
         categoryID       : Categories:ID not null                  @Common.Label: 'Category ID';
         supplierID       : Suppliers:ID not null                   @Common.Label: 'Supplier ID';
-        firstReleaseDate : Date;
-        isActive         : Boolean;
+        firstReleaseDate : Date                                    @Common.Label: 'First Release Date';
+        isActive         : Boolean                                 @Common.Label: 'Active Product';
         toCategory       : Association to one Categories
                                on toCategory.ID = $self.categoryID @Common.Label: 'To Category Navigation';
         toSupplier       : Association to one Suppliers
